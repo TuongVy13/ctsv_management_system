@@ -18,4 +18,13 @@ public class Students_demoService {
     public Students_demo saveStudents(Students_demo students){
         return  repository.save(students);
     }
+    public Students_demo updateStudent(Long id,Students_demo studentDetails){
+        Students_demo existingStudent=repository.findById(id)
+                .orElseThrow(()->new RuntimeException("Không tìm thấy sinh viên id: "+id));
+        existingStudent.setName(studentDetails.getName());
+        existingStudent.setEmail(studentDetails.getEmail());
+        existingStudent.setPhone(studentDetails.getPhone());
+
+        return repository.save(existingStudent);
+    }
 }

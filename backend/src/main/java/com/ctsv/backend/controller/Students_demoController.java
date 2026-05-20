@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/students_demo")
+@CrossOrigin(origins = "*")
 public class Students_demoController {
     private  final Students_demoService service;
     public Students_demoController(Students_demoService service){
@@ -20,5 +21,10 @@ public class Students_demoController {
     @PostMapping("/create")
     public Students_demo create(@RequestBody Students_demo student){
         return service.saveStudents(student);
+    }
+    @PutMapping("/{id}")
+    public Students_demo update(@PathVariable Long id,@RequestBody Students_demo studentDetails){
+        return service.updateStudent(id,studentDetails);
+
     }
 }
